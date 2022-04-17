@@ -4,7 +4,7 @@ set :rbenv_type, :user
 set :rbenv_ruby, '3.0.0'
 set :stages, %w(production)
 set :default_stage, "production"
-
+set :passenger_in_gemfile, true
 set :application, "miracle"
 set :repo_url, "https://github.com/Sediqwe/miracle.git"
 set :branch, "main"
