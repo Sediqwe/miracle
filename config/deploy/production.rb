@@ -59,3 +59,16 @@
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
+set :rails_env, :production
+append :linked_files,  "config/master.key", "config/credentials/production.key"
+
+server "miracle.sediqwe.eu",
+       user: "deploy",
+       roles: %w{web app db},
+       ssh_options: {
+           user: "deploy", # overrides user setting above
+           keys: %w(~/.ssh/pittyuka.pub),
+           forward_agent: false,
+           auth_methods: %w(publickey)
+
+       }

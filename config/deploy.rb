@@ -1,8 +1,20 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.17.0"
+lock "~> 3.16.0"
+set :rbenv_type, :user
+set :rbenv_ruby, '2.7.2'
+set :stages, %w(production)
+set :default_stage, "production"
 
-set :application, "my_app_name"
-set :repo_url, "git@example.com:me/my_repo.git"
+set :application, "miracle"
+set :repo_url, "https://github.com/Sediqwe/miracle.git"
+set :branch, "main"
+set :deploy_to, "/var/www/miracle"
+set :keep_releases, 3
+set :migration_command, 'db:create'
+set :conditionally_migrate, true
+
+
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets" "public/system", "public/uploads", "storage"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -21,10 +33,10 @@ set :repo_url, "git@example.com:me/my_repo.git"
 # set :pty, true
 
 # Default value for :linked_files is []
-# append :linked_files, "config/database.yml", 'config/master.key'
+# append :linked_files, "config/database.yml"
 
 # Default value for linked_dirs is []
-# append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "tmp/webpacker", "public/system", "vendor", "storage"
+# append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
